@@ -16,25 +16,32 @@ def main():
     kk_rct = kk_img.get_rect()
     kk_rct.center = 300, 200 
     tmr = 0
+    hight = 0
+    width = 0
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: return
         x = tmr
         x = x % 3200
+        hight = 0
+        width = -1
 
         key_lst = pg.key.get_pressed()
         if key_lst[pg.K_UP]:
-            kk_rct.move_ip((0,-1))
-        if key_lst[pg.K_DOWN]:
-            kk_rct.move_ip((0,1))
-        if key_lst[pg.K_RIGHT]:
-            kk_rct.move_ip((2,0))
-        if key_lst[pg.K_LEFT]:
-            kk_rct.move_ip((-1,0))
+            hight -= 1
+        elif key_lst[pg.K_DOWN]:
+            hight += 1
+        elif key_lst[pg.K_LEFT]:
+            width -= 1
+        elif key_lst[pg.K_RIGHT]:
+            width += 2
+        kk_rct.move_ip(width, hight)
+        
+            
         screen.blit(bg_img, [-x, 0])
         screen.blit(rbg_img, [-x+1600, 0])
         screen.blit(bg_img, [-x+3200, 0])
-        screen.blit(kk_img, (-x + kk_rct.x, kk_rct.y))
+        screen.blit(kk_img, kk_rct)
         pg.display.update()
         tmr += 1        
         clock.tick(200)
