@@ -28,13 +28,13 @@ def main():
         if key_lst[pg.K_DOWN]:
             kk_rct.move_ip((0,1))
         if key_lst[pg.K_RIGHT]:
-            kk_rct.move_ip((1,0))
+            kk_rct.move_ip((2,0))
         if key_lst[pg.K_LEFT]:
             kk_rct.move_ip((-1,0))
         screen.blit(bg_img, [-x, 0])
         screen.blit(rbg_img, [-x+1600, 0])
         screen.blit(bg_img, [-x+3200, 0])
-        screen.blit(kk_img, kk_rct)
+        screen.blit(kk_img, (-x + kk_rct.x, kk_rct.y))
         pg.display.update()
         tmr += 1        
         clock.tick(200)
